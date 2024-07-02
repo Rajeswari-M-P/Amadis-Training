@@ -1,0 +1,95 @@
+//IF STATEMENT
+let age = 18;
+
+if (age >= 18) {
+    console.log("You are an adult.");
+}
+
+//ELSE STATEMENT
+let score = 65;
+
+if (score >= 80) {
+    console.log("You passed the exam!");
+} else {
+    console.log("You need to retake the exam.");
+}
+
+//ELSE IF STATEMENT
+
+let score = 72;
+
+if (score >= 90) {
+    console.log("You got an A.");
+} else if (score >= 80) {
+    console.log("You got a B.");
+} else if (score >= 70) {
+    console.log("You got a C.");
+} else {
+    console.log("You need to retake the exam.");
+}
+
+
+//TERNARY
+
+let age = 22;
+let isAdult = (age >= 18) ? "You are an adult." : "You are a minor.";
+console.log(isAdult);
+
+//SWITCH STATEMENT
+let fruit = "apple";
+
+switch (fruit) {
+    case "apple":
+        console.log("Apples are $1.00");
+        break;
+    case "banana":
+        console.log("Bananas are $0.50");
+        break;
+    case "cherry":
+        console.log("Cherries are $3.00");
+        break;
+    default:
+        console.log("Sorry, we don't have that fruit");
+}
+
+
+
+//LOOPING STATEMENT
+
+//FOR LOOP
+for (let i = 0; i < 5; i++) {
+    console.log("Iteration number " + i);
+}
+
+//WHILE LOOP
+let i = 0;
+
+while (i < 5) {
+    console.log("Iteration number " + i);
+    i++;
+}
+
+//DO WHILE LOOP
+
+let i = 0;
+
+do {
+    console.log("Iteration number " + i);
+    i++;
+} while (i < 5);
+
+//FOR ....IN LOOP
+
+const person = { name: "John", age: 30, city: "New York" };
+
+for (let key in person) {
+    console.log(key + ": " + person[key]);
+}
+
+//FOR....OF LOOP
+const numbers = [1, 2, 3, 4, 5];
+
+for (let number of numbers) {
+    console.log(number);
+}
+
