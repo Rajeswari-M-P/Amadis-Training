@@ -1,0 +1,89 @@
+//CREATE TRANSPORTER
+
+const nodemailer = require('nodemailer');
+
+// Create a transporter
+let transporter = nodemailer.createTransport({
+  host: 'smtp.example.com', // SMTP server address
+  port: 587, // SMTP port (587 for TLS, 465 for SSL)
+  secure: false, // Use TLS
+  auth: {
+    user: 'your-email@example.com', // Your email address
+    pass: 'your-email-password' // Your email password
+  }
+});
+
+//DEFINE EMAIL OPTIONS
+
+let mailOptions = {
+  from: 'your-email@example.com', // Sender address
+  to: 'recipient@example.com', // List of recipients
+  subject: 'Hello from Nodemailer', // Subject line
+  text: 'Hello world!', // Plain text body
+  html: '<b>Hello world!</b>' // HTML body
+};
+
+//SEND TE EMAIL
+
+transporter.sendMail(mailOptions, (error, info) => {
+  if (error) {
+    return console.log(error);
+  }
+  console.log('Message sent: %s', info.messageId);
+  console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+});
+
+//EMAIL SENDING PROCESS
+const nodemailer = require('nodemailer');
+
+// Create transporter
+let transporter = nodemailer.createTransport({
+  host: 'smtp.example.com',
+  port: 587,
+  secure: false,
+  auth: {
+    user: 'your-email@example.com',
+    pass: 'your-email-password'
+  }
+});
+
+// Email options
+let mailOptions = {
+  from: 'your-email@example.com',
+  to: 'recipient@example.com',
+  subject: 'Hello from Nodemailer',
+  text: 'Hello world!',
+  html: '<b>Hello world!</b>',
+  attachments: [
+    {
+      filename: 'text1.txt',
+      content: 'hello world!'
+    },
+    {
+      path: 'path/to/file.pdf'
+    }
+  ]
+};
+
+// Send email
+transporter.sendMail(mailOptions, (error, info) => {
+  if (error) {
+    return console.log(error);
+  }
+  console.log('Message sent: %s', info.messageId);
+  console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+});
+
+//OAUTH2
+
+let transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    type: 'OAuth2',
+    user: 'your-email@gmail.com',
+    clientId: 'YOUR_CLIENT_ID',
+    clientSecret: 'YOUR_CLIENT_SECRET',
+    refreshToken: 'YOUR_REFRESH_TOKEN',
+    accessToken: 'YOUR_ACCESS_TOKEN'
+  }
+});
