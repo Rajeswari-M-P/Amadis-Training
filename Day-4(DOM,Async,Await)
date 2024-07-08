@@ -1,0 +1,68 @@
+//async
+async function myfun(){
+    let a=10; 
+        let b=6;
+        if (a<b) {
+          return("Operation was successful!"); 
+        } else {
+          return("There was an error."); 
+        }
+}
+myfun().then(
+    function(value) {
+      console.log(value); 
+    },
+    function(error) {
+      console.error(error); 
+    }
+  );
+
+
+
+//await
+
+async function myfun(){
+    let myPro = new Promise(function(res, rej) {
+        let a=10; 
+        let b=6;
+        if (a<b) {
+          res("Operation was successful!"); 
+        } else {
+          rej("There was an error."); 
+        }
+      });   
+        try {
+        var result = await myPro;
+              console.log(result); 
+            }
+            catch(error) {
+              console.error(error); 
+            }
+
+    return "hello";
+
+}
+myfun();
+
+
+//DOM
+<script>
+    function display()
+    {
+    var a=document.getElementById("p1");
+    a.innerHTML=" good morning";
+    var b=document.getElementsByName("hh1");
+    for(var i=0;i<b.length;i++)
+    {
+        if(i==0){
+            b[i].innerHTML="have a nice day";
+        }
+        else{
+            b[i].innerHTML="live,let live";
+        }
+    
+    }
+    }
+    </script>
+    <p id="p1"> Welcome </p><h1 name="hh1"> welcome<h1>
+    <h1 name="hh1"> Hello<h1><button onclick="display()"> Click</button>
