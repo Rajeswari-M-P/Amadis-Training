@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Storage Example</title>
+    <script src="local.js"></script>
+</head>
+<body>
+    <h1>Local Storage Example</h1>
+    <input type="text" id="nameInput" placeholder="Enter your name">
+    <button onclick="saveName()">Save Name</button>
+    <button onclick="getName()">Get Name</button>
+    <button onclick="removeName()">Remove Name</button>
+
+    <p id="output"></p>
+
+    
+</body>
+</html>
+
+
+
+// Function to save the name to localStorage
+function saveName() {
+    const nameInput = document.getElementById('nameInput').value;
+    localStorage.setItem('name', nameInput);
+    document.getElementById('output').innerText = `Name saved: ${nameInput}`;
+}
+
+// Function to get the name from localStorage
+function getName() {
+    const name = localStorage.getItem('name');
+    if (name) {
+        document.getElementById('output').innerText = `Stored name: ${name}`;
+    } else {
+        document.getElementById('output').innerText = 'No name found in localStorage.';
+    }
+}
+
+// Function to remove the name from localStorage
+function removeName() {
+    localStorage.removeItem('name');
+    document.getElementById('output').innerText = 'Name removed from localStorage.';
+}
+
+
+
+//map
+
+let myMap = new Map();
+
+// Adding elements
+myMap.set('name', 'Alice');
+myMap.set('age', 25);
+myMap.set(true, 'boolean key');
+myMap.set({ id: 1 }, 'object key');
+
+// Retrieving elements
+console.log(myMap.get('name')); 
+console.log(myMap.get(true)); 
+
+// Checking for keys
+console.log(myMap.has('age')); 
+console.log(myMap.has('gender')); 
+
+// Removing elements
+myMap.delete('age');
+console.log(myMap.has('age')); 
+
+// Iterating over elements
+myMap.forEach((value, key) => {
+    console.log(`${key}: ${value}`);
+});
+
+// Size of the Map
+console.log(myMap.size); 
+
+// Clearing the Map
+myMap.clear();
+console.log(myMap.size); 
+
+//session
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Storage Example</title>
+    <script src="session.js"></script>
+</head>
+<body>
+    <h1>Session Storage Example</h1>
+    <input type="text" id="emailInput" placeholder="Enter your email">
+    <button onclick="saveEmail()">Save Email</button>
+    <button onclick="getEmail()">Get Email</button>
+    <button onclick="removeEmail()">Remove Email</button>
+
+    <p id="output"></p>
+
+   
+</body>
+</html>
+
+
+
+// Function to save the email to sessionStorage
+function saveEmail() {
+    const emailInput = document.getElementById('emailInput').value;
+    sessionStorage.setItem('email', emailInput);
+    document.getElementById('output').innerText = `Email saved: ${emailInput}`;
+}
+
+// Function to get the email from sessionStorage
+function getEmail() {
+    const email = sessionStorage.getItem('email');
+    if (email) {
+        document.getElementById('output').innerText = `Stored email: ${email}`;
+    } else {
+        document.getElementById('output').innerText = 'No email found in sessionStorage.';
+    }
+}
+
+// Function to remove the email from sessionStorage
+function removeEmail() {
+    sessionStorage.removeItem('email');
+    document.getElementById('output').innerText = 'Email removed from sessionStorage.';
+}///set
+let mySet = new Set();
+
+// Adding elements
+mySet.add(1);
+mySet.add(2);
+mySet.add(3);
+mySet.add(4);
+mySet.add(5);
+mySet.add(5); // Duplicate value, will be ignored
+
+console.log(mySet);
+
+// Checking for elements
+console.log(mySet.has(3)); 
+console.log(mySet.has(6)); 
