@@ -1,0 +1,110 @@
+class componentta
+import React,{Component} from "react";
+class Welcome extends Component
+{
+    render()
+    {
+        return <h1>its a class component</h1>
+    }
+}
+
+export default Welcome;
+
+
+functional
+
+import React, { useState, useEffect } from 'react';
+
+function Example() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    document.heading = `You clicked ${count} times`;
+  });
+
+  const incrementCount = () => {
+    setCount(prevCount => prevCount + 1);
+  };
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={incrementCount}>Click me</button>
+    </div>
+  );
+}
+
+export default Example;
+
+
+state
+
+import React, { useState } from 'react';
+
+const Button =()=> {
+
+  const [On, setOn] = useState(false);
+  
+  const toggle = () => {
+    setOn(!On); 
+  };
+
+  return (
+    <div>
+      <button onClick={toggle}>
+        {On ? 'Turn Off' : 'Turn On'}
+      </button>
+      <p>{On ? 'The button is OFF' : 'The button is ON'}</p>
+    </div>
+  );
+}
+
+export default Button;
+
+events
+
+import { useState } from 'react';
+
+const Counter = () => {
+ const [count, setCount] = useState(0);
+
+ return (
+   <div >
+     <button
+       onClick={() => setCount(count - 1)}
+     >
+       Decrement
+     </button>
+     <p >{count}</p>
+     <button
+       onClick={() => setCount(count + 1)}
+     >
+       Increment
+     </button>
+   </div>
+ );
+};
+
+export default Counter;
+
+
+//props
+import React from 'react';
+
+const Greeting = (props) => {
+  return <h4>Hello, {props.name}!</h4>;
+};
+
+const Wish = (props) => {
+  return (
+    <div>
+      <h1>Example of props(properties)</h1>
+      <Greeting name="Priya" />
+      <h4>I am doing a {props.word}  job!</h4>
+    </div>
+  );
+};
+
+export default Wish;
+
+
