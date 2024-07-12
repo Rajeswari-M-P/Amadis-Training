@@ -1,0 +1,127 @@
+const { Sequelize, DataTypes } = require('sequelize');
+const bodyParser = require('body-parser');
+const express = require('express');
+
+
+const app = express();
+const port = 4003;
+
+// Configure Sequelize to connect to PostgreSQL
+const sequelize = new Sequelize('users', 'postgres', 'qwert@123', {//db name
+  dialect: 'postgres',
+  host: 'localhost'
+});
+
+
+
+Sequelize.authenticate().then(() =>{
+    console.log("connection succesful");
+
+}).catch((err) =>{
+    console.log("error connecting to databse")
+});
+
+console.log("another task.");
+
+
+
+// Define the User model
+const user = sequelize.define('User', {//table name
+  username: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  productname: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  productid: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  }
+}, {
+  freezeTableName: true, // disable pluralization of the table name
+  timestamps: false // disable timestamps
+});
+
+//insert data using bulid()
+user.sync({alter:true}).then(() =>{
+// const us=user.build({username:'raj',password:'123',productname:'dress',productid:'1'});
+// return us.save();
+
+//insert data using create()
+sequelize.sync({ alter: true })
+  .then(() => {
+    // Insert a new user using create()
+    return User.create({
+      username: 'john_doe',
+      password: '124',
+      productname: 'dress'
+      
+    });
+  })
+//update user
+sequelize.sync({ alter: true })//that modifies the synchronization behavior to alter the existing database tables
+  .then(() => {
+    // Try to find an existing record with productid 1
+    return user.findOne({ where: { productid: 1 } });
+  })
+  .then((existingUser) => {
+    if (existingUser) {
+      // Update existing record if found
+      console.log("Updating existing user...");
+      return existingUser.update({
+        username: 'damon', // Update username
+      });
+    } else {
+      // Create new record if not found
+      console.log("Creating new user...");
+      return user.create({
+        username: 'raj',
+        password: '123',
+        productname: 'dress',
+      });
+    }
+  })
+  .then((data) => {
+    console.log("User created:", data.toJSON());//instance converts it into a plain JavaScript object
+    // Delete the user
+    return user.destroy({ where: { productid: data.productid } });
+  })
+  .then((restoredUser) => {
+    if (restoredUser) {
+      console.log("User restored:", restoredUser.toJSON());
+    } else {
+      console.log("No user restored.");
+    }
+  })
+  .then((updatedUser) => {
+    console.log("User updated or created:");
+    console.log(updatedUser.toJSON());
+  })
+.then((restoredUser) => {
+    if (restoredUser) {
+      console.log("User restored:", restoredUser.toJSON());
+    } else {
+      console.log("No user restored.");
+    }
+  })
+  
+  .catch((err) => {
+    console.log("Error: ", err);
+  });
+user.drop();
+
+user.sync({alter:true}).then (() =>{
+     console.log("Table is synced successfully");
+
+}).catch((err)=>{
+      console.log("Error in syncing the table")
+});
+
+}
