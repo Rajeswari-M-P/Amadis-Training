@@ -1,0 +1,76 @@
+CREATION:
+  //Creating a database
+CREATE DATABASE mydatabase;
+
+//Creating a table
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+MODIFICATION:
+//Adding a new column to a table
+ALTER TABLE users
+ADD COLUMN password VARCHAR(100);
+
+//Modifing an existing column
+ALTER TABLE users
+ALTER COLUMN username TYPE VARCHAR(100);
+
+
+DROP:
+//Droping a table
+DROP TABLE users;
+
+//Droping a database
+DROP DATABASE mydatabase;
+
+TRUNCATE:
+
+TRUNCATE TABLE users;
+
+
+DATA MANIPULATION LANGUAGE:
+
+//SELECT
+
+  -- Select all columns from a table
+SELECT * FROM users;
+
+-- Select specific columns
+SELECT username, email FROM users;
+
+-- Select with conditions
+SELECT * FROM users WHERE username = 'john_doe';
+
+//INSERT
+
+  -- Insert a new row
+INSERT INTO users (username, email, password)
+VALUES ('john', 'john@.com', '1q2w3e4r');
+
+-- Insert multiple rows
+INSERT INTO users (username, email, password)
+VALUES
+    ('jane', 'jane@.com', '1234'),
+    ('alice', 'alice@.com', '5678');
+
+//UPDATE
+-- Update specific columns
+UPDATE users
+SET email = 'new_email@example.com'
+WHERE username = 'john_doe';
+
+-- Update multiple columns
+UPDATE users
+SET email = 'jane_new@example.com', password = 'newpassword'
+WHERE username = 'jane_doe';
+
+//DELETE
+-- Delete specific rows
+DELETE FROM users WHERE username = 'john_doe';
+
+-- Delete all rows
+DELETE FROM users;
